@@ -9,7 +9,58 @@
 </head>
 <body>
     <section class="container-fluid py-5">
+        <div class="row py-5 mx-2 text-white">
+            <div class="col-sm-4">
+              <div class="card bg-secondary">
+                <div class="card-body">
+                  <h5 class="card-title"><span id="newConfirmed"></span></h5>
+                  <p class="card-text">New Confirmed Cases</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title"><span id="totalConfirmed"></span></h5>
+                    <p class="card-text">Total Confirmed Cases</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card bg-danger">
+                  <div class="card-body">
+                      <h5 class="card-title"><span id="newDeaths"></span></h5>
+                      <p class="card-text">New Death Cases</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mt-2">
+                <div class="card bg-info">
+                  <div class="card-body">
+                      <h5 class="card-title"><span id="totalDeaths"></span></h5>
+                      <p class="card-text">Total Death Cases</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mt-2">
+                <div class="card bg-dark">
+                  <div class="card-body">
+                      <h5 class="card-title"><span id="newRecovered"></span></h5>
+                      <p class="card-text">New Recovered Cases</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mt-2">
+                <div class="card bg-primary">
+                  <div class="card-body">
+                      <h5 class="card-title"><span id="totalRecovered"></span></h5>
+                      <p class="card-text">Total Recovered Cases</p>
+                  </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
+           
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="covidTable">
@@ -35,6 +86,13 @@
             fetch("https://api.covid19api.com/summary")
           .then(response => response.json())
           .then(data => { 
+              //dashboard report
+              document.getElementById('newConfirmed').innerHTML = data.Global.NewConfirmed;
+              document.getElementById('totalConfirmed').innerHTML = data.Global.TotalConfirmed;
+              document.getElementById('newDeaths').innerHTML = data.Global.NewDeaths;
+              document.getElementById('totalDeaths').innerHTML = data.Global.TotalDeaths;
+              document.getElementById('newRecovered').innerHTML = data.Global.NewRecovered;
+              document.getElementById('totalRecovered').innerHTML = data.Global.TotalRecovered;
               //render the result inside a table
               let table = document.getElementById("covidTable");
               let caseArray = data.Countries;
